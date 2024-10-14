@@ -11,6 +11,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 @Table(name = "livro")
@@ -24,7 +26,9 @@ public class Livro {
 	@Column(nullable = false)
 	private String titulo;
 	
-	@Column
+	@NotNull(message = "Preencha o campo qtdPaginas")
+	@Positive(message = "A quantidade de páginas não pode ser igual ou inferior a zero")
+	@Column(nullable = false)
 	private Integer qtdPaginas;
 	
 	@Embedded
